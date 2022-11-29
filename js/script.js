@@ -12,30 +12,27 @@ window.addEventListener('DOMContentLoaded', () => {
     // 変数 downBtn に 下ボタン部分 のhtml部分を代入（idで抽出）
     const downBtn = document.getElementById('down-btn');
 
-    // 現在の角度を、変数 angleValue に代入
-    // circle の style　の transform の角度を指定して抽出
-    let angleValue = circle.style.transform;
+    // 現在の角度を、変数 angleValue に代入 (circle の style　の transform の角度を指定して抽出)
+    let angleValue = circle.style.getPropertyValue('transform');
     // 合計角度を入れる空箱 angleSum を作成
-    let angleSum;
+    let angleSum = 0;
 
-    // upBtnイベント
-    // upBtnがクリックされたらイベント実行
+    // upBtnイベント (upBtnがクリックされたらイベント実行)
     upBtn.addEventListener('click', () => {
         // 現在の傾きに「-90deg」して計算
-        angleSum = angleValue + "rotate(-90deg)";
+        angleSum = angleValue - 90;
         // circle の style の transform の角度を angleSumと同じにする
-        circle.style.transform = angleSum;
+        circle.style.transform = `rotate(${angleSum}deg)`;
         // 現在の角度 angleValue を 計算し直した角度 angleSum に変更
         angleValue = angleSum;
     });
 
-    // downBtnイベント
-     // downBtnがクリックされたらイベント実行
+    // downBtnイベント (downBtnがクリックされたらイベント実行)
     downBtn.addEventListener('click', () => {
         // 現在の傾きに「+90deg」して計算
-        angleSum = angleValue + "rotate(90deg)";
+        angleSum = angleValue - -90;
         // circle の style の transform の角度を angleSumと同じにする
-        circle.style.transform = angleSum;
+        circle.style.transform = `rotate(${angleSum}deg)`;
         // 現在の角度 angleValue を 計算し直した角度 angleSum に変更
         angleValue = angleSum;
     });
